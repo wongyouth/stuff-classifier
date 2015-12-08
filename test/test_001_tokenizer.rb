@@ -5,6 +5,7 @@ class Test001Tokenizer < TestBase
   before do
     @en_tokenizer = StuffClassifier::Tokenizer.new
     @fr_tokenizer = StuffClassifier::Tokenizer.new(:language => "fr")
+    @zh_tokenizer = StuffClassifier::Tokenizer.new(:language => 'zh', :stemming => false)
   end
 
   def test_simple_tokens
@@ -45,6 +46,17 @@ class Test001Tokenizer < TestBase
       "han", "christian", "andersen", "démarqu", "négat"]
 
     assert_equal should_return, words      
+  end
+
+  def test_chinese
+  
+    words = @zh_tokenizer.each_word("今天我得到二个最重要的人生启示")
+
+    should_return = [
+      "今天", "我", "得到", "二个", "最重要的", "人生", "启示"
+    ]
+
+    assert_equal should_return, words
   end
 
 end

@@ -98,5 +98,10 @@ StuffClassifier::Tokenizer::TOKENIZER_PROPERTIES = {
     'was', 'weg', 'weil', 'weiter', 'welche', 'welchem', 'welchen', 'welcher', 'welches', 'wenn', 'werde', 'werden', 'wie', 'wieder', 'will',
     'wir', 'wird', 'wirst', 'wo', 'wollen', 'wollte', 'würde', 'würden', 'zu', 'zum', 'zur', 'zwar', 'zwischen'
     ])
+  },
+  "zh" =>{
+    :preprocessing_regexps => {/['`]/ => '',/[_]/ => ' '},
+    :stop_word => Set.new([
+    ])
   }
 }

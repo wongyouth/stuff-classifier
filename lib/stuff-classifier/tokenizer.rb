@@ -1,6 +1,8 @@
 # encoding: utf-8
 
 require "lingua/stemmer"
+require 'rmmseg'
+RMMSeg::Dictionary.load_dictionaries
 
 class StuffClassifier::Tokenizer
   require  "stuff-classifier/tokenizer/tokenizer_properties"
@@ -53,7 +55,9 @@ class StuffClassifier::Tokenizer
         preprocessing_regexps.each { |regexp,replace_by| line.gsub!(regexp, replace_by) }
       end
 
-      line.gsub(/\p{Word}+/).each do |w|
+      list = language == 'zh' ? segment(line) : line.gsub(/\p{Word}+/)
+
+      list.each do |w|
           next if w == '' || ignore_words.member?(w.downcase)
 
         if stemming? and stemable?(w)
@@ -76,4 +80,14 @@ private
     word =~ /^\p{Alpha}+$/
   end
   
+  def segment text
+    algor = RMMSeg::Algorithm.new(text)
+    result = []
+    loop do
+      tok = algor.next_token
+      break if tok.nil?
+      result << tok.text.force_encoding('utf-8')
+    end
+    result
+   end
 end
