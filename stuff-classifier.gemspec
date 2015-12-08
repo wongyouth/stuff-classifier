@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 require "stuff-classifier/version"
 
 Gem::Specification.new do |s|
-  s.name        = "stuff-classifier"
+  s.name        = "stuff-classifier-zh"
   s.version     = StuffClassifier::VERSION
   s.authors     = ["Alexandru Nedelcu"]
   s.email       = ["github@contact.bionicspirit.com"]
@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "ruby-stemmer"
   s.add_runtime_dependency "sequel"
   s.add_runtime_dependency "redis"
-  s.add_runtime_dependency "rmmseg-cpp-huacnlee"
+  s.add_runtime_dependency "rmmseg-cpp"
 
 
   s.add_development_dependency "bundler"

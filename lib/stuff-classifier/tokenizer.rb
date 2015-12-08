@@ -2,6 +2,7 @@
 
 require "lingua/stemmer"
 require 'rmmseg'
+require 'rmmseg/dictionary'
 RMMSeg::Dictionary.load_dictionaries
 
 class StuffClassifier::Tokenizer
